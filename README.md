@@ -1,4 +1,4 @@
-# gdscfluttercau
+# GDSC CAU Flutter
 
 GDSC CAU Flutter First Project
 
