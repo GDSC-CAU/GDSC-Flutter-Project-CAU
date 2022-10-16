@@ -10,40 +10,54 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MealView object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: const Text("CAU Helper"),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
         ),
-        body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: Column(
-              children: const [
-                MealView(),
-                ScheduleView()
+        home: const CAUInfo(),
+    );
+  }
+}
+
+class CAUInfo extends StatefulWidget {
+  const CAUInfo({Key? key}) : super(key: key);
+
+  @override
+  State<CAUInfo> createState() => _CAUInfoState();
+}
+
+class _CAUInfoState extends State<CAUInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+            appBar: AppBar(
+              title: const Text('CAU Helper'),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {},
+                )
               ],
+              bottom: const TabBar(
+                labelStyle: TextStyle(fontSize: 20),
+                unselectedLabelStyle: TextStyle(fontSize: 15),
+                  tabs: [
+                    Tab(text: 'Meal Plan',),
+                    Tab(text: 'Schedule'),
+                  ]
+              ),
             ),
-          ),
-        ),
-      );
+            body: const TabBarView(
+                children: [
+                  Tab(child: MealView()),
+                  Tab(child: ScheduleView())
+                ])
+        )
+    );
   }
 }
